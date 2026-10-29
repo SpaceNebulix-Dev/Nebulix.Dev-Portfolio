@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05050a">
+  <meta name="description" content="Nebulix.dev — futuristic web developer portfolio.">
+  <title>Nebulix.dev — Beyond the ordinary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topline" id="topline"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header>
+    <nav class="container">
+      <a href="#home" class="logo" aria-label="Nebulix.dev home">
+        <span class="logo-mark">N</span>
+        <span class="wordmark">nebulix<span class="wordmark-domain">.dev</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-i18n="navHome">Bosh sahifa</a></li>
+        <li><a href="#projects" data-i18n="navProjects">Loyihalar</a></li>
+        <li><a href="#services" data-i18n="navServices">Xizmatlar</a></li>
+        <li><a href="#about" data-i18n="navAbout">Men haqimda</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="lang-switch" role="group" aria-label="Choose language">
+          <button type="button" class="lang-btn active" data-lang="uz" aria-pressed="true">UZ</button>
+          <span class="lang-divider">/</span>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="button nav-contact" href="#contact" data-i18n="navContact">Bog‘lanish <span>↗</span></a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Kunduzgi rejimga o‘tish" title="Kunduzgi rejimga o‘tish"><span id="themeIcon" aria-hidden="true">☼</span></button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menyuni ochish" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="pulse" aria-hidden="true"></span><span class="mono" data-i18n="eyebrow">MUSTAQIL WEB DASTURCHI</span></div>
+        <h1 data-i18n-html="heroTitle">Kelajakni loyihala.<br><span class="gradient">Chegaralardan tashqarida yarat.</span></h1>
+        <p class="hero-copy" data-i18n="heroCopy">Men Nebulix — zamonaviy web tajribalar, futuristik interfeyslar va esda qoladigan raqamli mahsulotlar yaratishga intiluvchi dasturchiman.</p>
+        <div class="hero-actions">
+          <a class="button" href="#projects" data-i18n="heroProjects">Loyihalarni ko‘rish <span>↗</span></a>
+          <a class="button ghost" href="#about" data-i18n="heroAbout">Men haqimda <span>↓</span></a>
+        </div>
+        <div class="hero-meta mono"><span data-i18n="meta1">KREATIV DASTURLASH</span><span data-i18n="meta2">NEON ESTETIKA</span><span data-i18n="meta3">RESPONSIVE UI</span></div>
+      </div>
+      <div class="hero-sphere" aria-hidden="true"></div>
+    </section>
+
+    <section class="section container" id="projects">
+      <div class="section-head reveal">
+        <div><div class="kicker mono" data-i18n="projectsKicker">01 / TANLANGAN ISHLAR</div><h2 data-i18n-html="projectsTitle">G‘oyalardan yaralgan<span class="gradient">.</span></h2>
+        <p class="section-desc" data-i18n="projectsDesc">Bu namunaviy loyihalar. Ularni o‘zingizning haqiqiy ishlaringiz bilan almashtirishingiz mumkin.</p></div>
+        <a href="#contact" class="tiny-link mono" data-i18n="projectLink">LOYIHANGIZ BORMI? ↗</a>
+      </div>
+      <div class="projects">
+        <article class="card reveal">
+          <div class="project-visual"><div class="visual-grid"></div><div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>nebulix / interface</span></div>
+            <div class="mini-title">Create something <b>unreal.</b></div><div class="mini-sub"></div><div class="mini-sub short"></div><div class="mini-button"></div>
+            <div class="mini-cards"><span></span><span></span><span></span></div>
+          </div></div>
+          <div class="project-content"><div class="project-top"><h3>Project Nova</h3><span class="project-number">01 / 04</span></div>
+            <p data-i18n="project1Desc">Neon aksentlar va silliq interaktiv effektlarga ega futuristik landing page konsepti.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="project-visual cyan"><div class="visual-grid"></div><div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>nexus / dashboard</span></div>
+            <div class="mini-title">Your digital <b style="color:#67e8f9">universe.</b></div><div class="mini-sub"></div><div class="mini-sub short"></div><div class="mini-button" style="background:linear-gradient(90deg,#0891b2,#6366f1);box-shadow:0 0 16px #67e8f966"></div>
+            <div class="mini-cards"><span></span><span></span><span></span></div>
+          </div></div>
+          <div class="project-content"><div class="project-top"><h3>Project Nexus</h3><span class="project-number">02 / 04</span></div>
+            <p data-i18n="project2Desc">Toza kompozitsiya va yorqin cyan effektlariga ega dashboard konsepti.</p>
+            <div class="tags"><span class="tag">UI / UX</span><span class="tag">Responsive</span><span class="tag">CSS</span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="project-visual pink"><div class="visual-grid"></div><div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>orbit / studio</span></div>
+            <div class="mini-title">Ideas into <b style="color:#f472b6">reality.</b></div><div class="mini-sub"></div><div class="mini-sub short"></div><div class="mini-button" style="background:linear-gradient(90deg,#db2777,#9333ea);box-shadow:0 0 16px #f472b666"></div>
+            <div class="mini-cards"><span></span><span></span><span></span></div>
+          </div></div>
+          <div class="project-content"><div class="project-top"><h3>Project Orbit</h3><span class="project-number">03 / 04</span></div>
+            <p data-i18n="project3Desc">Premium brend uchun kreativ web sahifa va vizual hikoya.</p>
+            <div class="tags"><span class="tag">Landing Page</span><span class="tag">Animation</span></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="project-visual"><div class="visual-grid"></div><div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>pulse / portfolio</span></div>
+            <div class="mini-title">Less noise. <b>More signal.</b></div><div class="mini-sub"></div><div class="mini-sub short"></div><div class="mini-button"></div>
+            <div class="mini-cards"><span></span><span></span><span></span></div>
+          </div></div>
+          <div class="project-content"><div class="project-top"><h3>Project Pulse</h3><span class="project-number">04 / 04</span></div>
+            <p data-i18n="project4Desc">Minimalistik tipografiya, qoramtir ranglar va neon mikrointeraksiyalar.</p>
+            <div class="tags"><span class="tag">Portfolio</span><span class="tag">Dark UI</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="services">
+      <div class="section-head reveal"><div><div class="kicker mono" data-i18n="servicesKicker">02 / XIZMATLARIM</div><h2 data-i18n-html="servicesTitle">Maqsad bilan yaratilgan<span class="gradient">.</span></h2>
+        <p class="section-desc" data-i18n="servicesDesc">Kuchli web tajriba dizayn va kod bir-birini to‘ldirgan joyda boshlanadi.</p></div></div>
+      <div class="services">
+        <article class="service reveal"><div class="service-icon">⌘</div><h3 data-i18n="service1Title">Web dasturlash</h3><p data-i18n="service1Desc">Tezkor, moslashuvchan va barcha ekranlarda qulay ishlaydigan web-saytlar.</p></article>
+        <article class="service reveal"><div class="service-icon">✧</div><h3 data-i18n="service2Title">Interfeys dizayni</h3><p data-i18n="service2Desc">Dark UI, neon estetika, premium kompozitsiya va qulay foydalanuvchi tajribasi.</p></article>
+        <article class="service reveal"><div class="service-icon">↗</div><h3 data-i18n="service3Title">Kreativ g‘oyalar</h3><p data-i18n="service3Desc">Brendni ajratib ko‘rsatadigan o‘ziga xos vizual g‘oyalar va prototiplar.</p></article>
+      </div>
+    </section>
+
+    <section class="section container" id="about">
+      <div class="about-panel reveal">
+        <div><div class="kicker mono" data-i18n="aboutKicker">03 / DASTURCHI HAQIDA</div><h2 data-i18n-html="aboutTitle">Salom, men <span class="gradient">Nebulix.</span></h2>
+          <p data-i18n="aboutDesc">Men web dasturlash va zamonaviy interfeyslar yaratishga qiziqaman. Menga dark mode, neon yorug‘liklar, futuristik detallar va premium ko‘rinish yoqadi. Bu portfolio — o‘z uslubimni namoyish qilish uchun boshlang‘ich nuqta.</p>
+          <div class="techs"><span class="tech">HTML5</span><span class="tech">CSS3</span><span class="tech">JavaScript</span><span class="tech">Responsive UI</span><span class="tech">Creative CSS</span></div>
+        </div>
+        <div class="core" aria-label="Nebulix logo animation"><div class="core-ring"></div><div class="core-ring two"></div><div class="core-logo">N.</div></div>
+      </div>
+    </section>
+
+    <section class="section container" id="contact">
+      <div class="contact-panel reveal">
+        <div class="kicker mono" data-i18n="contactKicker">04 / BOG‘LANISH</div>
+        <h2 data-i18n-html="contactTitle">Keling, birgalikda<br><span class="gradient">ajoyib narsa yaratamiz.</span></h2>
+        <p class="section-desc" data-i18n="contactDesc">Yangi g‘oyangiz bormi? Keling, uni birgalikda raqamli tajribaga aylantiramiz.</p>
+        <!-- TODO: Quyidagi emailni o'zingizning haqiqiy emailingizga almashtiring -->
+        <a class="button" href="mailto:hello@nebulix.dev" data-i18n="contactButton">Bog‘lanish <span>↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-row">
+    <a href="#home" class="logo footer-logo"><span class="logo-mark">N</span><span class="footer-wordmark">nebulix<span class="wordmark-domain">.dev</span></span></a>
+    <span>© <span id="year"></span> <strong>Nebulix.dev</strong> · <span data-i18n="footerText">Raqamli olamda yaratilgan.</span></span>
+    <a class="social-placeholder mono" href="#home" data-i18n="backTop">YUQORIGA ↑</a>
+  </div></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
