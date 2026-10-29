@@ -195,4 +195,6 @@ app.get("*", (req, res, next) => {
   if (req.path.startsWith("/api/")) return res.status(404).json({ error: "API route topilmadi." });
   next();
 });
-app.listen(PORT, () => console.log(`Nebulix.dev running at http://localhost:${PORT}`));
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Nebulix.dev running on port ${PORT}`);
+});
