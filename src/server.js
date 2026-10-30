@@ -22,6 +22,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: false, limit: "20kb" }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, "../public")));
 
 const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 8, standardHeaders: true, legacyHeaders: false });
@@ -87,7 +88,7 @@ app.post("/api/admin/login", loginLimiter, async (req, res) => {
     res.status(500).json({ error: "Server xatosi." });
   }
 });
-app.post("/api/admin/logout", (_req, res) => {
+app.post("/api/admin/logout", auth, (_req, res) => {
   res.clearCookie("nebulix_admin", { httpOnly: true, sameSite: "strict", secure: prod, path: "/" });
   res.json({ ok: true });
 });
@@ -132,6 +133,18 @@ app.delete("/api/admin/messages/:id", auth, async (req, res) => {
     res.json({ ok: true });
   } catch { res.status(500).json({ error: "Xabarni o‘chirib bo‘lmadi." }); }
 });
+app.get("/api/projects", async (_req, res) => {
+  try {
+    const r = await pool.query(
+      "SELECT id, title, description, url, image_url, tech_stack, featured FROM projects ORDER BY sort_order ASC, created_at DESC"
+    );
+    res.json({ projects: r.rows });
+  } catch (error) {
+    console.error("Public projects error:", error);
+    res.status(500).json({ error: "Loyihalarni yuklab bo‘lmadi." });
+  }
+});
+
 app.get("/api/admin/projects", auth, async (_req, res) => {
   try {
     const r = await pool.query("SELECT * FROM projects ORDER BY sort_order ASC, created_at DESC");
@@ -144,10 +157,11 @@ app.post("/api/admin/projects", auth, async (req, res) => {
   const url = clean(req.body.url, 500);
   const image_url = clean(req.body.image_url, 1000);
   const tech_stack = Array.isArray(req.body.tech_stack) ? req.body.tech_stack.slice(0, 12).map(x => clean(x, 40)).filter(Boolean) : [];
-  const featured = Boolean(req.body.featured);
+  if (typeof req.body.featured !== "boolean") return res.status(400).json({ error: "Featured qiymati true yoki false bo‘lishi kerak." });
+  const featured = req.body.featured;
   if (title.length < 2) return res.status(400).json({ error: "Loyiha nomi kamida 2 belgidan iborat bo‘lsin." });
   for (const link of [url, image_url].filter(Boolean)) {
-    try { if (!["http:", "https:"].includes(new URL(link).protocol)) throw new Error(); }
+    try { const parsed = new URL(link); if (!["http:", "https:"].includes(parsed.protocol) || !parsed.hostname || parsed.username || parsed.password) throw new Error(); }
     catch { return res.status(400).json({ error: "Havolalar http:// yoki https:// bilan boshlanishi kerak." }); }
   }
   try {
@@ -165,10 +179,11 @@ app.put("/api/admin/projects/:id", auth, async (req, res) => {
   const url = clean(req.body.url, 500);
   const image_url = clean(req.body.image_url, 1000);
   const tech_stack = Array.isArray(req.body.tech_stack) ? req.body.tech_stack.slice(0, 12).map(x => clean(x, 40)).filter(Boolean) : [];
-  const featured = Boolean(req.body.featured);
+  if (typeof req.body.featured !== "boolean") return res.status(400).json({ error: "Featured qiymati true yoki false bo‘lishi kerak." });
+  const featured = req.body.featured;
   if (!Number.isSafeInteger(id) || id < 1 || title.length < 2) return res.status(400).json({ error: "Ma’lumotlarni tekshiring." });
   for (const link of [url, image_url].filter(Boolean)) {
-    try { if (!["http:", "https:"].includes(new URL(link).protocol)) throw new Error(); }
+    try { const parsed = new URL(link); if (!["http:", "https:"].includes(parsed.protocol) || !parsed.hostname || parsed.username || parsed.password) throw new Error(); }
     catch { return res.status(400).json({ error: "Havolalar http:// yoki https:// bilan boshlanishi kerak." }); }
   }
   try {

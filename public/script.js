@@ -165,3 +165,91 @@
     } else {
       cursorGlow.style.display = "none";
     }
+
+   async function loadProjects() {
+  const grid = document.getElementById("projectsGrid");
+  if (!grid) return;
+
+  try {
+    const response = await fetch("/api/projects");
+    if (!response.ok) {
+      throw new Error("Loyihalarni yuklab bo‘lmadi");
+    }
+
+    const data = await response.json();
+    const projects = data.projects || [];
+
+    // Admin loyihalari bo‘lmasa, asl 4 ta namuna saqlanadi.
+    if (projects.length === 0) {
+      return;
+    }
+
+    grid.innerHTML = "";
+
+    projects.forEach((project, index) => {
+      const card = document.createElement("article");
+      card.className = "card reveal visible";
+
+      const visual = document.createElement("div");
+      visual.className = "project-visual";
+
+      if (project.image_url) {
+        const image = document.createElement("img");
+        image.src = project.image_url;
+        image.alt = project.title || "Loyiha rasmi";
+        image.loading = "lazy";
+        image.style.width = "100%";
+        image.style.height = "100%";
+        image.style.objectFit = "cover";
+        visual.appendChild(image);
+      } else {
+        visual.innerHTML = '<div class="visual-grid"></div>';
+      }
+
+      const content = document.createElement("div");
+      content.className = "project-content";
+
+      const top = document.createElement("div");
+      top.className = "project-top";
+
+      const title = document.createElement("h3");
+      title.textContent = project.title || "Nomsiz loyiha";
+
+      const number = document.createElement("span");
+      number.className = "project-number";
+      number.textContent = String(index + 1).padStart(2, "0");
+
+      top.append(title, number);
+
+      const description = document.createElement("p");
+      description.textContent = project.description || "";
+
+      const tags = document.createElement("div");
+      tags.className = "tags";
+
+      (Array.isArray(project.tech_stack) ? project.tech_stack : []).forEach((tech) => {
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = tech;
+        tags.appendChild(tag);
+      });
+
+      content.append(top, description, tags);
+      card.append(visual, content);
+
+      if (project.url) {
+        card.style.cursor = "pointer";
+        card.addEventListener("click", (event) => {
+          if (event.target.closest("a")) return;
+          window.open(project.url, "_blank", "noopener,noreferrer");
+        });
+      }
+
+      grid.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Loyihalarni yuklashda xato:", error);
+  }
+}
+
+loadProjects();

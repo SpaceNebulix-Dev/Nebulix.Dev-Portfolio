@@ -1,72 +1,202 @@
 <!doctype html>
 <html lang="uz">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080914"><title>Nebulix // Control Center</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/admin/admin.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#050816">
+  <title>Nebulix // Control Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/admin.css">
 </head>
 <body>
-<div class="ambient a1"></div><div class="ambient a2"></div><div class="grid"></div>
-<main id="loginScreen" class="login-wrap">
-  <section class="login-card glass">
-    <div class="brand"><span class="brand-mark">N</span><span>nebulix<span class="muted">.dev</span></span><span class="sys">SYS / 01</span></div>
-    <div class="eyebrow"><i></i> SECURE ACCESS GATE</div>
-    <h1>Control<span class="gradient"> Center</span></h1>
-    <p class="sub">Boshqaruv tizimiga xush kelibsiz. Davom etish uchun autentifikatsiyadan o‘ting.</p>
-    <form id="loginForm">
-      <label>ADMIN USERNAME<input name="username" autocomplete="username" placeholder="admin" required></label>
-      <label>ACCESS KEY<input name="password" type="password" autocomplete="current-password" placeholder="••••••••••••" required></label>
-      <button class="primary" type="submit">Tizimga kirish <span>↗</span></button>
-    </form>
-    <div id="loginError" class="notice" role="status"></div>
-    <div class="login-foot"><span>● ENCRYPTED SESSION</span><span>NEBULIX OS v1.0</span></div>
-  </section>
-</main>
-<div id="appScreen" class="app hidden">
-  <aside class="sidebar glass">
-    <a class="brand" href="/"><span class="brand-mark">N</span><span>nebulix<span class="muted">.dev</span></span></a>
-    <div class="side-label">WORKSPACE</div>
-    <button class="nav-item active" data-view="overview"><span>◈</span> Umumiy holat</button>
-    <button class="nav-item" data-view="messages"><span>✉</span> Xabarlar <b id="navUnread">0</b></button>
-    <button class="nav-item" data-view="projects"><span>▧</span> Loyihalar</button>
-    <div class="sidebar-bottom"><div class="online"><i></i> SYSTEM ONLINE</div><div class="profile"><span class="avatar">N</span><span><strong id="adminName">Admin</strong><small>Super administrator</small></span><button id="logoutBtn" title="Chiqish">↗</button></div></div>
-  </aside>
-  <section class="main">
-    <header class="topbar glass"><div><div class="crumb">NEBULIX <span>/</span> <b id="crumbName">OVERVIEW</b></div><h2 id="pageTitle">Control overview</h2></div><div class="top-right"><span class="live"><i></i> LIVE SYSTEM</span><a class="view-site" href="/" target="_blank" rel="noreferrer">Saytni ko‘rish ↗</a></div></header>
-    <div id="toast" class="toast" role="status"></div>
-    <section id="overviewView" class="view">
-      <div class="welcome"><div><div class="eyebrow"><i></i> ADMINISTRATOR DASHBOARD</div><h1>Yana xush kelibsiz<span class="gradient">.</span></h1><p>Portfolio tizimingiz holati va so‘nggi faolliklar bir joyda.</p></div><div class="orbital"><span>✳</span></div></div>
-      <div class="stats">
-        <article class="stat glass"><div class="stat-top"><span>JAMI XABARLAR</span><b>✉</b></div><strong id="statMessages">—</strong><small>Kontakt formadan kelgan</small><div class="spark"></div></article>
-        <article class="stat glass"><div class="stat-top"><span>YANGI XABARLAR</span><b>◉</b></div><strong id="statUnread">—</strong><small>Ko‘rib chiqish kutilmoqda</small><div class="spark violet"></div></article>
-        <article class="stat glass"><div class="stat-top"><span>LOYIHALAR</span><b>▧</b></div><strong id="statProjects">—</strong><small>Portfolio kolleksiyasi</small><div class="spark cyan"></div></article>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="ambient ambient-three"></div>
+  <div class="grid-overlay"></div>
+
+  <main id="loginScreen" class="login-wrap">
+    <section class="login-card glass">
+      <a class="brand login-brand" href="/">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">nebulix<span class="brand-accent">.dev</span></span>
+        <span class="sys">SYS / 01</span>
+      </a>
+      <div class="eyebrow"><i></i> SECURE ACCESS GATE</div>
+      <h1>Control <span class="gradient">Center</span></h1>
+      <p class="sub">Boshqaruv tizimiga xush kelibsiz. Davom etish uchun autentifikatsiyadan o‘ting.</p>
+      <form id="loginForm" class="login-form">
+        <label>ADMIN USERNAME<input name="username" autocomplete="username" placeholder="admin" required></label>
+        <label>ACCESS KEY<input name="password" type="password" autocomplete="current-password" placeholder="••••••••••••" required></label>
+        <button class="primary" type="submit">Tizimga kirish <span>↗</span></button>
+      </form>
+      <div id="loginError" class="notice" role="status"></div>
+      <div class="login-foot"><span>● ENCRYPTED SESSION</span><span>NEBULIX OS v1.0</span></div>
+    </section>
+  </main>
+
+  <div id="appScreen" class="app hidden">
+    <aside class="sidebar glass">
+      <a class="brand" href="/">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">nebulix<span class="brand-accent">.dev</span><small>CONTROL CENTER</small></span>
+      </a>
+      <div class="side-label">WORKSPACE <span>01</span></div>
+      <nav class="nav-stack" aria-label="Asosiy menyu">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span><span>Overview</span><span class="nav-arrow">↗</span></button>
+        <button class="nav-item" data-view="messages"><span class="nav-icon">✉</span><span>Xabarlar</span><b id="navUnread">0</b></button>
+        <button class="nav-item" data-view="projects"><span class="nav-icon">▧</span><span>Loyihalar</span><span class="nav-arrow">↗</span></button>
+      </nav>
+      <div class="sidebar-promo">
+        <div class="promo-orb">✳</div>
+        <span class="eyebrow">BUILD THE FUTURE</span>
+        <strong>Next level<br>starts here.</strong>
+        <small>Nebulix.dev · Admin OS</small>
       </div>
-      <div class="section-head"><div><div class="eyebrow">RECENT ACTIVITY</div><h3>So‘nggi xabarlar</h3></div><button class="ghost" data-goto="messages">Barchasini ko‘rish ↗</button></div>
-      <div id="recentMessages" class="message-list glass"><div class="empty">Ma’lumotlar yuklanmoqda…</div></div>
-    </section>
-    <section id="messagesView" class="view hidden">
-      <div class="section-head"><div><div class="eyebrow">INBOX / COMMUNICATIONS</div><h3>Kelgan xabarlar</h3></div><select id="messageFilter" class="filter"><option value="">Barcha xabarlar</option><option value="new">Yangi</option><option value="read">O‘qilgan</option><option value="archived">Arxiv</option></select></div>
-      <div id="allMessages" class="message-list glass"><div class="empty">Yuklanmoqda…</div></div>
-    </section>
-    <section id="projectsView" class="view hidden">
-      <div class="section-head"><div><div class="eyebrow">PORTFOLIO / COLLECTION</div><h3>Loyihalarni boshqarish</h3></div><button id="newProjectBtn" class="primary compact">＋ Yangi loyiha</button></div>
-      <div id="projectFormWrap" class="form-card glass hidden">
-        <h3 id="projectFormTitle">Yangi loyiha</h3><form id="projectForm" class="project-form">
-          <input type="hidden" name="id">
-          <label>Loyiha nomi<input name="title" required maxlength="160" placeholder="Neon dashboard"></label>
-          <label>Demo havolasi<input name="url" type="url" placeholder="https://example.com"></label>
-          <label>Rasm URL<input name="image_url" type="url" placeholder="https://..."></label>
-          <label class="full">Tavsif<textarea name="description" rows="3" placeholder="Loyiha haqida qisqacha..."></textarea></label>
-          <label class="full">Texnologiyalar (vergul bilan)<input name="tech_stack" placeholder="HTML, CSS, JavaScript"></label>
-          <label class="check full"><input name="featured" type="checkbox"> Tanlangan loyiha sifatida belgilash</label>
-          <div class="form-actions full"><button type="button" id="cancelProject" class="ghost">Bekor qilish</button><button type="submit" class="primary compact">Saqlash ↗</button></div>
-        </form>
+      <div class="sidebar-bottom">
+        <div class="online"><i></i> SYSTEM ONLINE <span>●</span></div>
+        <div class="profile">
+          <span class="avatar">N</span>
+          <span class="profile-copy"><strong id="adminName">Admin</strong><small>Super administrator</small></span>
+          <button id="logoutBtn" title="Chiqish" aria-label="Chiqish">↗</button>
+        </div>
       </div>
-      <div id="projectGrid" class="project-grid"><div class="empty">Loyihalar yuklanmoqda…</div></div>
+    </aside>
+
+    <section class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="crumb">NEBULIX <span>/</span> <b id="crumbName">OVERVIEW</b></div>
+          <h2 id="pageTitle">Overview dashboard</h2>
+        </div>
+        <div class="top-right">
+          <div class="top-live"><i></i><span>LIVE SYSTEM</span></div>
+          <a class="view-site" href="/" target="_blank" rel="noreferrer">Saytni ko‘rish <span>↗</span></a>
+        </div>
+      </header>
+
+      <div id="toast" class="toast" role="status"></div>
+
+      <section id="overviewView" class="view">
+        <div class="welcome">
+          <div>
+            <div class="eyebrow"><i></i> ADMINISTRATOR DASHBOARD</div>
+            <h1>Xush kelibsiz, <span class="gradient">Admin.</span> <span class="wave">✳</span></h1>
+            <p>Portfolio tizimingiz va so‘nggi faolliklar — barchasi bir joyda.</p>
+          </div>
+          <div class="welcome-meta"><span class="meta-icon">◷</span><span><small>CONTROL CENTER</small><strong>NEBULIX / 01</strong></span></div>
+        </div>
+
+        <div class="stats">
+          <article class="stat stat-purple glass">
+            <div class="stat-top"><span>JAMI XABARLAR</span><b>✉</b></div>
+            <strong id="statMessages">—</strong>
+            <small>Kontakt formadan kelgan</small>
+            <div class="stat-line"></div>
+          </article>
+          <article class="stat stat-cyan glass">
+            <div class="stat-top"><span>YANGI XABARLAR</span><b>◉</b></div>
+            <strong id="statUnread">—</strong>
+            <small>Ko‘rib chiqish kutilmoqda</small>
+            <div class="stat-line"></div>
+          </article>
+          <article class="stat stat-blue glass">
+            <div class="stat-top"><span>LOYIHALAR</span><b>▧</b></div>
+            <strong id="statProjects">—</strong>
+            <small>Portfolio kolleksiyasi</small>
+            <div class="stat-line"></div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-primary">
+            <article class="panel analytics-panel glass">
+              <div class="panel-head">
+                <div class="panel-title">
+                  <span class="panel-icon purple-icon">⌁</span>
+                  <span><span class="eyebrow">ANALYTICS / OVERVIEW</span><h3>Portfolio faolligi</h3><p>So‘nggi kunlardagi tizim faolligi</p></span>
+                </div>
+                <span class="range-chip">LIVE <i></i></span>
+              </div>
+              <div class="chart-area" aria-label="Portfolio faolligi vizual grafigi">
+                <div class="chart-y"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div>
+                <div class="chart-plot">
+                  <div class="chart-gridlines"><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="chart-bars">
+                    <span style="height:34%"><i>01</i></span><span style="height:55%"><i>02</i></span><span style="height:43%"><i>03</i></span><span style="height:72%"><i>04</i></span><span style="height:61%"><i>05</i></span><span style="height:88%"><i>06</i></span><span style="height:74%"><i>07</i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-legend"><span><i class="legend-dot"></i> Umumiy faollik</span><span>VIZUAL MONITORING</span></div>
+            </article>
+
+            <article class="panel projects-preview glass">
+              <div class="section-head">
+                <div class="panel-title"><span class="panel-icon cyan-icon">▧</span><span><span class="eyebrow">PORTFOLIO / COLLECTION</span><h3>So‘nggi loyihalar</h3></span></div>
+                <button class="ghost" data-goto="projects">Barchasi <span>↗</span></button>
+              </div>
+              <div class="project-mini-grid">
+                <div class="project-mini mini-purple"><span class="mini-symbol">⌘</span><small>01 / WEB</small><strong>Web Development</strong><p>Zamonaviy web tajribalar</p><span class="mini-tag">WEB SYSTEMS</span></div>
+                <div class="project-mini mini-cyan"><span class="mini-symbol">◈</span><small>02 / MOBILE</small><strong>Mobile Apps</strong><p>Mobil ilovalar ekotizimi</p><span class="mini-tag">MOBILE OS</span></div>
+                <div class="project-mini mini-blue"><span class="mini-symbol">✳</span><small>03 / AI</small><strong>AI Solutions</strong><p>Intellektual yechimlar</p><span class="mini-tag">NEURAL TECH</span></div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="dashboard-side">
+            <article class="panel status-panel glass">
+              <div class="section-head">
+                <div class="panel-title"><span class="panel-icon cyan-icon">⌁</span><span><span class="eyebrow">SYSTEM / HEALTH</span><h3>Tizim holati</h3></span></div>
+              </div>
+              <div class="status-row"><span class="status-symbol">⌘</span><span class="status-name">API Server<small>Backend service</small></span><span class="status-value"><i></i> Online</span></div>
+              <div class="status-row"><span class="status-symbol">◈</span><span class="status-name">Portfolio<small>Public website</small></span><span class="status-value"><i></i> Active</span></div>
+              <div class="status-row"><span class="status-symbol">▣</span><span class="status-name">Admin Panel<small>Control interface</small></span><span class="status-value"><i></i> Ready</span></div>
+            </article>
+
+            <article class="panel recent-panel glass">
+              <div class="section-head">
+                <div class="panel-title"><span class="panel-icon purple-icon">✉</span><span><span class="eyebrow">INBOX / ACTIVITY</span><h3>So‘nggi xabarlar</h3></span></div>
+                <button class="ghost" data-goto="messages">Barchasi <span>↗</span></button>
+              </div>
+              <div id="recentMessages" class="message-list"><div class="empty">Ma’lumotlar yuklanmoqda…</div></div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section id="messagesView" class="view hidden">
+        <div class="section-head page-section-head">
+          <div><div class="eyebrow">INBOX / COMMUNICATIONS</div><h3>Kelgan xabarlar</h3></div>
+          <select id="messageFilter" class="filter"><option value="">Barcha xabarlar</option><option value="new">Yangi</option><option value="read">O‘qilgan</option><option value="archived">Arxiv</option></select>
+        </div>
+        <div id="allMessages" class="message-list glass"><div class="empty">Yuklanmoqda…</div></div>
+      </section>
+
+      <section id="projectsView" class="view hidden">
+        <div class="section-head page-section-head">
+          <div><div class="eyebrow">PORTFOLIO / COLLECTION</div><h3>Loyihalarni boshqarish</h3></div>
+          <button id="newProjectBtn" class="primary compact">＋ Yangi loyiha</button>
+        </div>
+        <div id="projectFormWrap" class="form-card glass hidden">
+          <h3 id="projectFormTitle">Yangi loyiha</h3>
+          <form id="projectForm" class="project-form">
+            <input type="hidden" name="id">
+            <label>Loyiha nomi<input name="title" required maxlength="160" placeholder="Neon dashboard"></label>
+            <label>Demo havolasi<input name="url" type="url" placeholder="https://example.com"></label>
+            <label>Rasm URL<input name="image_url" type="url" placeholder="https://..."></label>
+            <label class="full">Tavsif<textarea name="description" rows="3" placeholder="Loyiha haqida qisqacha..."></textarea></label>
+            <label class="full">Texnologiyalar (vergul bilan)<input name="tech_stack" placeholder="HTML, CSS, JavaScript"></label>
+            <label class="check full"><input name="featured" type="checkbox"> Tanlangan loyiha sifatida belgilash</label>
+            <div class="form-actions full"><button type="button" id="cancelProject" class="ghost">Bekor qilish</button><button type="submit" class="primary compact">Saqlash ↗</button></div>
+          </form>
+        </div>
+        <div id="projectGrid" class="project-grid"><div class="empty">Loyihalar yuklanmoqda…</div></div>
+      </section>
+
+      <footer class="footer"><span>NEBULIX CONTROL CENTER <span class="muted">© 2026</span></span><span>BUILT FOR THE NEXT DIMENSION <i>✳</i></span></footer>
     </section>
-    <footer class="footer"><span>NEBULIX CONTROL CENTER <span class="muted">© 2026</span></span><span>BUILT FOR THE NEXT DIMENSION <i>✳</i></span></footer>
-  </section>
-</div>
-<script src="/admin/admin.js" defer></script>
-</body></html>
+  </div>
+  <script src="/admin/admin.js" defer></script>
+</body>
+</html>
